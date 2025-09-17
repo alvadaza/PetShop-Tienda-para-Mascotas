@@ -1,0 +1,54 @@
+ :root {
+  --primary: #00897b;
+  --secondary: #f5f5f5;
+  --text: #333;
+  --card-bg: #fff;
+  --hover:  #00695c;
+  --border-radius: 12px;
+  --border: 1px solid #ddd;
+  --terceary:  #f5f5f5;
+}
+ body {
+      font-family: Arial, sans-serif;
+      background: var(--terceary);
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+    .login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: var(--border);
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: var(--hover);
+    }
+    .mensaje {
+      margin-top: 10px;
+      color: red;
+      text-align: center;
+    }

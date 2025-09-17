@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Panel Admin</title>
+    <link rel="stylesheet" href="css/stylesLogin.css" />
+  </head>
+  <body>
+    <div class="login-box">
+      <h2>Login Admin</h2>
+      <form id="loginForm">
+        <input
+          type="email"
+          id="email"
+          placeholder="Correo electrónico"
+          required
+        />
+        <input
+          type="password"
+          id="password"
+          placeholder="Contraseña"
+          required
+        />
+        <button type="submit">Ingresar</button>
+        <a href="#" id="forgotPasswordLink">¿Olvidaste tu contraseña?</a>
+      </form>
+      <div class="mensaje" id="mensaje"></div>
+    </div>
+
+    <script type="module">
+      import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+      const supabase = createClient(
+        "https://dedztwbflzgislpsyraw.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRlZHp0d2JmbHpnaXNscHN5cmF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM4ODEwNTksImV4cCI6MjA2OTQ1NzA1OX0.mr8N_SLAWRjC8cSG28CVnBDl4ot6QK7SGXa0ZU339E4"
+      );
+
+      const form = document.getElementById("loginForm");
+      const mensaje = document.getElementById("mensaje");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        if (error) {
+          mensaje.textContent = "Error: " + error.message;
+        } else {
+          localStorage.setItem("session", JSON.stringify(data.session));
+          window.location.href = "admin.html";
+        }
+      });
+      document
+        .getElementById("forgotPasswordLink")
+        .addEventListener("click", async (e) => {
+          e.preventDefault();
+          const email = prompt(
+            "Ingresa tu correo electrónico para restablecer tu contraseña:"
+          );
+
+          if (!email) {
+            alert("Debes ingresar un correo válido.");
+            return;
+          }
+
+          const { data, error } = await supabase.auth.resetPasswordForEmail(
+            email,
+            {
+              redirectTo: "http://localhost:5500/reset-password.html", // <-- Página a donde redirigirá después
+            }
+          );
+
+          if (error) {
+            alert(
+              "Error al enviar el enlace de recuperación: " + error.message
+            );
+          } else {
+            alert(
+              "Te hemos enviado un correo con el enlace para restablecer tu contraseña."
+            );
+          }
+        });
+    </script>
+  </body>
+</html>
