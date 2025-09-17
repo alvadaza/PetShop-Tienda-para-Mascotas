@@ -519,11 +519,12 @@ async function generarPDF(nombre, direccion, telefono) {
   const doc = new jsPDF();
 
   // ======= CONFIGURACIONES GENERALES =======
-  const tiendaNombre = "🛒 PetShop - Tienda para Mascotas";
+  const tiendaNombre = "PetShop - Tienda para Mascotas";
   const tiendaDireccion = "Calle 123 #45-67, Bogotá";
-  const tiendaTelefono = "📱 313 357 4711";
+  const tiendaTelefono = "313 357 4711";
+  const fecha = new Date().toLocaleDateString("es-ES");
   const logoUrl =
-    "https://res.cloudinary.com/dl7kjajkv/image/upload/v1758064709/PERRO-removebg-preview_3_rfzynh.png"; // <-- Pon tu logo real aquí
+    "https://res.cloudinary.com/dl7kjajkv/image/upload/v1758064709/PERRO-removebg-preview_3_rfzynh.png";
 
   // ======= AGREGAR LOGO Y ENCABEZADO =======
   try {
@@ -537,14 +538,14 @@ async function generarPDF(nombre, direccion, telefono) {
         });
       });
 
-    doc.addImage(img, "PNG", 14, 10, 20, 20); // logo en la esquina
+    doc.addImage(img, "PNG", 14, 10, 20, 20);
   } catch (e) {
-    console.warn(" No se pudo cargar el logo:", e);
+    console.warn("No se pudo cargar el logo:", e);
   }
 
   doc.setFontSize(18);
   doc.setFont("helvetica", "bold");
-  doc.text(tiendaNombre, 40, 20); // Nombre de la tienda
+  doc.text(tiendaNombre, 40, 20);
 
   doc.setFontSize(14);
   doc.setFont("helvetica", "normal");
@@ -552,9 +553,10 @@ async function generarPDF(nombre, direccion, telefono) {
 
   // ======= DATOS DEL CLIENTE =======
   doc.setFontSize(11);
-  doc.text(` Nombre: ${nombre}`, 14, 50);
-  doc.text(` Dirección: ${direccion}`, 14, 56);
-  doc.text(` Teléfono: ${telefono}`, 14, 62);
+  doc.text(`Nombre: ${nombre}`, 14, 50);
+  doc.text(`Dirección: ${direccion}`, 14, 56);
+  doc.text(`Teléfono: ${telefono}`, 14, 62);
+  doc.text(`Fecha: ${fecha}`, 14, 68);
 
   // ======= TABLA DE PRODUCTOS =======
   const rows = carrito.map((item) => [
@@ -571,7 +573,7 @@ async function generarPDF(nombre, direccion, telefono) {
   doc.autoTable({
     head: [["Producto", "Cantidad", "Precio Unitario", "Subtotal"]],
     body: rows,
-    startY: 70,
+    startY: 75,
     styles: { halign: "center" },
     headStyles: { fillColor: [230, 230, 230], textColor: 0, fontStyle: "bold" },
     bodyStyles: { textColor: 50 },
@@ -590,11 +592,26 @@ async function generarPDF(nombre, direccion, telefono) {
 
   // ======= FOOTER CON INFO DE LA TIENDA =======
   const pageHeight = doc.internal.pageSize.height;
-  doc.setFontSize(10);
+  doc.setFontSize(9);
   doc.setFont("helvetica", "italic");
-  doc.text(tiendaDireccion, 14, pageHeight - 15);
-  doc.text(tiendaTelefono, 14, pageHeight - 10);
+  doc.text("¡Gracias por su compra!", 105, pageHeight - 20, {
+    align: "center",
+  });
+  doc.text(
+    "PetShop - Amigo Fiel - Todo para tu mascota",
+    105,
+    pageHeight - 15,
+    { align: "center" }
+  );
+  doc.text(tiendaDireccion + " | " + tiendaTelefono, 105, pageHeight - 10, {
+    align: "center",
+  });
 
-  // ======= GUARDAR PDF =======
-  doc.save("pedido.pdf");
+  // ======= GUARDAR PDF CON NOMBRE DEL CLIENTE =======
+  // Limpiar el nombre para que sea válido como nombre de archivo
+  const nombreArchivo = `Pedido_${nombre.replace(
+    /[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]/g,
+    "_"
+  )}_${fecha.replace(/\//g, "-")}.pdf`;
+  doc.save(nombreArchivo);
 }
