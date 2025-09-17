@@ -580,7 +580,7 @@ footer {
   padding: 0.5rem;
   margin-top: 2rem;
 }
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   header {
     flex-direction: column; /* 👈 Acomoda elementos en columna */
     gap: 8px;
@@ -629,7 +629,7 @@ footer {
     transform: translateY(250%);
   }
 }
-@media (orientation: landscape) and (max-width: 915px) {
+@media (orientation: landscape) and (max-width: 1200px) {
   .hero-content {
     margin-bottom: 130px;
   }
@@ -653,7 +653,7 @@ footer {
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 720px) {
   .hero {
     padding-top: 5px; /* 👈 espacio para que el header no tape el contenido */
   }
@@ -674,7 +674,7 @@ footer {
   }
 }
 
-@media (orientation: landscape) and (max-width: 740px) {
+@media (orientation: landscape) and (max-width: 920px) {
   .hero-content img {
     transform: translateX(-160%) translatey(80%);
   }
