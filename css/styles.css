@@ -652,3 +652,30 @@ footer {
     transform: translateX(-130%) translatey(80%);
   }
 }
+
+@media (max-width: 360px) {
+  .hero {
+    padding-top: 5px; /* 👈 espacio para que el header no tape el contenido */
+  }
+  .hero-content img {
+    height: 10rem;
+    width: auto;
+    margin-bottom: 5px;
+    transform: translateY(250%);
+  }
+  .top-bar {
+    padding: 0 10px;
+  }
+  header {
+    padding: 5px 10px;
+  }
+  #viewCartBtn {
+    margin-right: 20px;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 740px) {
+  .hero-content img {
+    transform: translateX(-160%) translatey(80%);
+  }
+}
