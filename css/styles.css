@@ -611,16 +611,16 @@ footer {
   }
 
   #storeName {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     margin-bottom: 10px;
     margin-top: 10px;
-    margin-left: -40px;
+    margin-left: -35px;
   }
 
   #viewCartBtn {
     font-size: 0.9rem;
     padding: 6px 12px;
-    margin-left: 200px;
+    margin-left: 190px;
   }
   .hero-content img {
     height: 10rem;
