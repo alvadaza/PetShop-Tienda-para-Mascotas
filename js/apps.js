@@ -519,10 +519,11 @@ async function generarPDF(nombre, direccion, telefono) {
   const doc = new jsPDF();
 
   // ======= CONFIGURACIONES GENERALES =======
-  const tiendaNombre = "🛒 Mi Tienda Profesional";
+  const tiendaNombre = "🛒 PetShop - Tienda para Mascotas";
   const tiendaDireccion = "Calle 123 #45-67, Bogotá";
   const tiendaTelefono = "📱 313 357 4711";
-  const logoUrl = "https://via.placeholder.com/60x60.png?text=LOGO"; // <-- Pon tu logo real aquí
+  const logoUrl =
+    "https://res.cloudinary.com/dl7kjajkv/image/upload/v1758064709/PERRO-removebg-preview_3_rfzynh.png"; // <-- Pon tu logo real aquí
 
   // ======= AGREGAR LOGO Y ENCABEZADO =======
   try {
@@ -538,7 +539,7 @@ async function generarPDF(nombre, direccion, telefono) {
 
     doc.addImage(img, "PNG", 14, 10, 20, 20); // logo en la esquina
   } catch (e) {
-    console.warn("⚠️ No se pudo cargar el logo:", e);
+    console.warn(" No se pudo cargar el logo:", e);
   }
 
   doc.setFontSize(18);
@@ -551,9 +552,9 @@ async function generarPDF(nombre, direccion, telefono) {
 
   // ======= DATOS DEL CLIENTE =======
   doc.setFontSize(11);
-  doc.text(`👤 Nombre: ${nombre}`, 14, 50);
-  doc.text(`🏠 Dirección: ${direccion}`, 14, 56);
-  doc.text(`📱 Teléfono: ${telefono}`, 14, 62);
+  doc.text(` Nombre: ${nombre}`, 14, 50);
+  doc.text(` Dirección: ${direccion}`, 14, 56);
+  doc.text(` Teléfono: ${telefono}`, 14, 62);
 
   // ======= TABLA DE PRODUCTOS =======
   const rows = carrito.map((item) => [
