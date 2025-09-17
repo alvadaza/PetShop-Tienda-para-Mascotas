@@ -347,8 +347,8 @@ async function editarProducto(id) {
   document.getElementById("prod_descripcion").value =
     producto.descripcion || "";
   document.getElementById("prod_precio").value = producto.precio;
-  document.getElementById("prod_imagen").value = producto.imagen_url || "";
-  document.getElementById("prod_categoria").value = producto.categoria_id;
+  //  document.getElementById("prod_imagen").value = producto.imagen_url || "";
+  // document.getElementById("prod_categoria").value = producto.categoria_id;
   document.getElementById("prod_stock").value = producto.stock;
 
   // Limpiar campos de imágenes y volver a crear

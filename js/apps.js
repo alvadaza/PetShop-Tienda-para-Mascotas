@@ -519,9 +519,9 @@ async function generarPDF(nombre, direccion, telefono) {
   const doc = new jsPDF();
 
   // ======= CONFIGURACIONES GENERALES =======
-  const tiendaNombre = "PetShop - Tienda para Mascotas";
+  const tiendaNombre = "🛒 PetShop - Tienda para Mascotas";
   const tiendaDireccion = "Calle 123 #45-67, Bogotá";
-  const tiendaTelefono = "313 357 4711";
+  const tiendaTelefono = "📱 313 357 4711";
   const logoUrl =
     "https://res.cloudinary.com/dl7kjajkv/image/upload/v1758064709/PERRO-removebg-preview_3_rfzynh.png"; // <-- Pon tu logo real aquí
 
