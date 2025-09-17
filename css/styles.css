@@ -678,4 +678,9 @@ footer {
   .hero-content img {
     transform: translateX(-160%) translatey(80%);
   }
+  header {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: auto;
+  }
 }
