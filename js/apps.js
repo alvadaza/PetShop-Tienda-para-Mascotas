@@ -182,7 +182,7 @@ function mostrarProductos(catId) {
           ${agotado ? `<span class="overlay-agotado">AGOTADO</span>` : ""}
         </div>
         <h3>${p.nombre}</h3>
-        <p>$${p.precio.toFixed(2)}</p>
+        <p>$${p.precio.toLocaleString("es-ES")}</p>
         <p class="stock">${agotado ? "Agotado" : `Disponibles: ${p.stock}`}</p>
         <button class="conozca-btn" ${agotado ? "disabled" : ""}>
           ${agotado ? "Sin Stock" : "Conozca el Producto"}
@@ -224,7 +224,7 @@ function filtrarProductos(texto) {
           ${agotado ? `<span class="overlay-agotado">AGOTADO</span>` : ""}
         </div>
         <h3>${p.nombre}</h3>
-        <p>$${p.precio.toFixed(2)}</p>
+        <p>$${p.precio.toLocaleString("es-ES")}</p>
         <p class="stock">${agotado ? "Agotado" : `Disponibles: ${p.stock}`}</p>
         <button class="conozca-btn" ${agotado ? "disabled" : ""}>
           ${agotado ? "Sin Stock" : "Conozca el Producto"}

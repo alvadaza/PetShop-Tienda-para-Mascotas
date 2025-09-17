@@ -28,7 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("filtrarStock")
     .addEventListener("change", mostrarProductosEnTabla);
 });
-
+document.addEventListener("DOMContentLoaded", () => {
+  const btnPedidos = document.getElementById("verPedidosBtn");
+  btnPedidos.addEventListener("click", () => {
+    window.location.href = "/pedidos.html"; // O "/pedidos.html" si está en raíz
+  });
+});
 // Estado
 let categorias = [];
 let productos = [];
@@ -124,8 +129,10 @@ function actualizarSelectorCategorias() {
 
 async function manejarCategoria(e) {
   e.preventDefault();
-  const nombre = document.getElementById("cat_nombre").value.trim();
-  const descripcion = document.getElementById("cat_descripcion").value.trim();
+  const nombre = document.getElementById("cat_nombre").value.toUpperCase();
+  const descripcion = document
+    .getElementById("cat_descripcion")
+    .value.toUpperCase();
 
   const { error } = await supabase
     .from("categorias")
@@ -148,13 +155,20 @@ async function editarCategoria(id) {
   const categoria = categorias.find((c) => c.id === id);
   if (!categoria) return;
 
-  const nuevoNombre = prompt("Editar nombre:", categoria.nombre);
-  if (nuevoNombre === null) return;
+  // Prompt para nombre
+  let nuevoNombre = prompt("Editar nombre:", categoria.nombre);
+  if (nuevoNombre === null) return; // Si cancela, salimos
+  nuevoNombre = nuevoNombre.toUpperCase(); // Convertimos a MAYÚSCULAS
 
-  const nuevaDescripcion = prompt(
+  // Prompt para descripción
+  let nuevaDescripcion = prompt(
     "Editar descripción:",
     categoria.descripcion || ""
   );
+  if (nuevaDescripcion === null) return;
+  nuevaDescripcion = nuevaDescripcion.toUpperCase(); // También en MAYÚSCULAS
+
+  // Guardar en Supabase
   const { error } = await supabase
     .from("categorias")
     .update({ nombre: nuevoNombre, descripcion: nuevaDescripcion })
@@ -231,39 +245,58 @@ function mostrarProductosEnTabla() {
     document.getElementById("filtrarCategoria")?.value;
   const filtroStock = document.getElementById("filtrarStock")?.value;
 
-  productos
-    .filter((p) => {
-      const coincideTexto = p.nombre.toLowerCase().includes(buscarTexto);
-      const coincideCategoria =
-        !categoriaSeleccionada || p.categoria_id == categoriaSeleccionada;
-      const coincideStock =
-        filtroStock === "agotado"
-          ? p.stock <= 0
-          : filtroStock === "disponible"
-          ? p.stock > 0
-          : true;
+  // 1) Filtramos primero
+  const filtrados = productos.filter((p) => {
+    const nombre = (p.nombre || "").toLowerCase();
+    const coincideTexto = buscarTexto ? nombre.includes(buscarTexto) : true;
+    const coincideCategoria =
+      !categoriaSeleccionada || p.categoria_id == categoriaSeleccionada;
+    const coincideStock =
+      filtroStock === "agotado"
+        ? p.stock <= 0
+        : filtroStock === "disponible"
+        ? p.stock > 0
+        : true;
 
-      return coincideTexto && coincideCategoria && coincideStock;
-    })
-    .forEach((producto) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${producto.id}</td>
-        <td>${producto.nombre}</td>
-        <td>$${producto.precio.toFixed(2)}</td>
-        <td>${producto.categorias?.nombre || "Sin categoría"}</td>
-        <td>${producto.stock}</td>
-        <td class="acciones">
-          <button class="editar editar-producto" data-id="${
-            producto.id
-          }">Editar</button>
-          <button class="eliminar eliminar-producto" data-id="${
-            producto.id
-          }">Eliminar</button>
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
+    return coincideTexto && coincideCategoria && coincideStock;
+  });
+
+  const totalEncontrados = filtrados.length;
+
+  // 2) Tomamos solo los primeros 10 del array filtrado
+  const LIMITE = 10;
+  const mostrar = filtrados.slice(0, LIMITE);
+
+  // 3) (Opcional) Mostrar info de resultados si existe el elemento
+  const infoEl = document.getElementById("productosInfo");
+  if (infoEl) {
+    infoEl.textContent = `Mostrando ${
+      mostrar.length
+    } de ${totalEncontrados} resultados${
+      totalEncontrados > LIMITE ? " (solo primeros " + LIMITE + ")" : ""
+    }`;
+  }
+
+  // 4) Renderizar solo los items a mostrar
+  mostrar.forEach((producto) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${producto.id}</td>
+      <td>${producto.nombre}</td>
+      <td>$${(producto.precio || 0).toLocaleString("es-ES")}</td>
+      <td>${producto.categorias?.nombre || "Sin categoría"}</td>
+      <td>${producto.stock}</td>
+      <td class="acciones">
+        <button class="editar editar-producto" data-id="${
+          producto.id
+        }">Editar</button>
+        <button class="eliminar eliminar-producto" data-id="${
+          producto.id
+        }">Eliminar</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
 }
 
 async function cargarCategoriasParaFiltro() {
@@ -295,8 +328,10 @@ async function manejarProducto(e) {
   const imagenesString = imagenes.join(","); // <-- Ahora sí tenemos imagenesString dentro de la función
 
   const producto = {
-    nombre: document.getElementById("prod_nombre").value.trim(),
-    descripcion: document.getElementById("prod_descripcion").value.trim(),
+    nombre: document.getElementById("prod_nombre").value.toUpperCase(),
+    descripcion: document
+      .getElementById("prod_descripcion")
+      .value.toUpperCase(),
     precio: parseFloat(document.getElementById("prod_precio").value),
     imagen_url: imagenesString, // ✅ Aquí sí lo usamos correctamente
     categoria_id: parseInt(document.getElementById("prod_categoria").value),

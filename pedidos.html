@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="https://res.cloudinary.com/dl7kjajkv/image/upload/v1758065913/PERRO.png_wog4m4.jpg"
+      type="image/x-icon"
+    />
+    <title>Panel - Pedidos</title>
+    <link rel="stylesheet" href="/css/styles_admin.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <button id="logoutBtn">Cerrar sesión</button>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container-pedidos">
+        <h1>Consulta de Pedidos</h1>
+        <!-- Filtros -->
+        <div class="filtros">
+          <input
+            type="number"
+            id="filtro-id"
+            placeholder="Buscar por número de pedido"
+          />
+
+          <select id="filtro-estado">
+            <option value="">Todos</option>
+            <option value="pendiente">Pendientes</option>
+            <option value="despachado">Despachados</option>
+          </select>
+          <button id="btn-buscar">Buscar</button>
+        </div>
+
+        <div class="filtros">
+          <div class="filtro-group">
+            <label for="filtro-nombre">Buscar por Nombre:</label>
+            <input
+              type="text"
+              id="filtro-nombre"
+              placeholder="Nombre del cliente"
+            />
+          </div>
+
+          <div class="filtro-group">
+            <label for="filtro-fecha">Buscar por Fecha:</label>
+            <input type="date" id="filtro-fecha" />
+          </div>
+
+          <div
+            class="filtro-group"
+            style="display: flex; align-items: flex-end"
+          >
+            <button class="btn btn-buscar" id="btn-buscar">Buscar</button>
+          </div>
+        </div>
+
+        <div class="resultados" id="resultados-pedidos">
+          <div class="loading" id="loading">
+            <p>Cargando pedidos...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script type="module" src="/js/pedidos.js"></script>
+  </body>
+</html>
