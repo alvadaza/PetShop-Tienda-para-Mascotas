@@ -337,7 +337,7 @@ function agregarAlCarrito(producto, cantidad = 1) {
   }
 
   // 🔄 Reducimos el stock del array productos inmediatamente
-  producto.stock -= cantidad;
+  //  producto.stock -= cantidad;
 
   if (itemEnCarrito) {
     itemEnCarrito.cantidad += cantidad;
@@ -409,17 +409,27 @@ function mostrarCarrito() {
 
   carrito.forEach((item, index) => {
     const li = document.createElement("li");
+    li.classList.add("cart-item");
+
     li.innerHTML = `
-      <span>${item.nombre} x${item.cantidad} – $${(
-      item.precio * item.cantidad
-    ).toLocaleString("es-ES")}</span>
+      <span class="cart-info">
+        <strong>${item.nombre}</strong>
+        <span class="cart-details">
+          <span class="cart-cantidad">Cantidad: ${item.cantidad}</span>
+          <span class="cart-price">$${(
+            item.precio * item.cantidad
+          ).toLocaleString("es-ES")}</span>
+        </span>
+      </span>
+
       <span class="cart-controls">
-        <button onclick="cambiarCantidad(${index}, -1)">-</button>
-        <button onclick="cambiarCantidad(${index}, 1)">+</button>
-        <button onclick="eliminarProducto(${index})">🗑</button>
+        <button class="btn-cantidad" onclick="cambiarCantidad(${index}, -1)">−</button>
+        <button class="btn-cantidad" onclick="cambiarCantidad(${index}, 1)">+</button>
+        <button class="btn-eliminar" onclick="eliminarProducto(${index})">🗑</button>
       </span>
     `;
     ul.appendChild(li);
+
     total += item.precio * item.cantidad;
   });
 
