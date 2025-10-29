@@ -494,35 +494,6 @@ async function getCurrentUser() {
   return data.user;
 }
 
-// === LOGIN FORM ===
-document.getElementById("loginForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const correo = document.getElementById("loginCorreo").value;
-  const clave = document.getElementById("loginClave").value;
-  const { error } = await login(correo, clave);
-  if (error) {
-    alert("Error al iniciar sesión: " + error.message);
-  } else {
-    alert("Bienvenido");
-    document.getElementById("loginModal").style.display = "none";
-  }
-});
-
-// === SIGNUP FORM ===
-document
-  .getElementById("registroForm")
-  .addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const correo = document.getElementById("reg_correo").value;
-    const clave = document.getElementById("reg_clave").value;
-    const { error } = await signup(correo, clave);
-    if (error) {
-      alert("Error al registrarse: " + error.message);
-    } else {
-      alert("Revisa tu correo para confirmar el registro.");
-    }
-  });
-
 // funcion generar pdf
 async function generarPDF(nombre, direccion, telefono) {
   const { jsPDF } = window.jspdf;
