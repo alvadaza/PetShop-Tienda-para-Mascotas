@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="https://res.cloudinary.com/dl7kjajkv/image/upload/v1758065913/PERRO.png_wog4m4.jpg" type="image/x-icon">
-  <title>PetShop - Tienda para Mascotas</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <header>
-    <img src="https://res.cloudinary.com/dl7kjajkv/image/upload/v1758064709/PERRO-removebg-preview_3_rfzynh.png" alt="Logo Tienda Aseo" id="logo">
-    <h1 id="storeName">PetShop - Tienda para Mascotas</h1>
-    <button id="viewCartBtn">🛒 Carrito (<span id="cartCount">0</span>)</button>
-  </header>
-    <section class="hero">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PetShop - Todo para tu mascota en un solo lugar. Amplia variedad de alimentos premium, juguetes divertidos, correas, shampoos y más. Productos de calidad para el bienestar de tu perro o gato."
+    />
+    <link
+      rel="shortcut icon"
+      href="https://res.cloudinary.com/dl7kjajkv/image/upload/v1758065913/PERRO.png_wog4m4.jpg"
+      type="image/x-icon"
+    />
+    <title>PetShop - Tienda para Mascotas</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <img
+        src="https://res.cloudinary.com/dl7kjajkv/image/upload/v1758064709/PERRO-removebg-preview_3_rfzynh.png"
+        alt="Logo Tienda Aseo"
+        id="logo"
+      />
+      <h1 id="storeName">PetShop - Tienda para Mascotas</h1>
+      <button id="viewCartBtn">
+        🛒 Carrito (<span id="cartCount">0</span>)
+      </button>
+    </header>
+    <nav class="hero">
       <!-- Top bar con logo y login -->
-      <div class="top-bar">
+      <section class="top-bar">
         <a href="/" class="logo">🌙 PetShop - Amigo Fiel</a>
         <a href="/login.html" class="login-btn">Inicia Sesión</a>
-      </div>
+      </section>
 
-      <div class="hero-content">
+      <section class="hero-content">
         <a href="/">
           <img
             src="https://res.cloudinary.com/dl7kjajkv/image/upload/v1758065779/PERRO-removebg-preview_5_c0osrz.png"
@@ -32,87 +43,104 @@
           />
         </a>
         <p>Todo para el cuidado de tu mascota</p>
-        <h1>PetShop Amigo Fiel</h1>
+        <h2>PetShop Amigo Fiel</h2>
         <a href="#productos" class="btn">Explorar Servicios</a>
+      </section>
+    </nav>
+    <section class="buscador">
+      <input type="text" id="buscador" placeholder="Buscar productos..." />
+    </section>
+    <section id="about">
+      <h2>Sobre Nosotros</h2>
+      <p>
+        Bienvenidos a nuestra tienda especializada en productos para mascotas.
+        Ofrecemos alimentos, juguetes, accesorios y productos de cuidado de la
+        más alta calidad. Nuestro objetivo es brindar una experiencia excelente
+        para ti y tu compañero peludo.
+      </p>
+    </section>
+
+    <section id="filters">
+      <button class="filter-btn active" data-cat="">Todos</button>
+    </section>
+
+    <!-- Modal producto / galería -->
+    <!-- MODAL GALERÍA -->
+    <main>
+      <article id="productos" class="productos-grid"></>
+      <section id="galeriaModal" class="modal">
+        <article class="modal-content">
+          <span id="closeGaleriaBtn">&times;</span>
+          <h2 id="galeriaTitulo"></h2>
+          <p id="galeriaPrecio"></p>
+          <p id="galeriaDescripcion"></p>
+          <p id="galeriaStock"></p>
+
+          <img id="galeriaPrincipal" />
+
+          <section id="galeriaImagenes"></section>
+
+          <section class="cantidad-container">
+            <button id="btnRestar">-</button>
+            <input
+              type="number"
+              id="cantidadProducto"
+              value="1"
+              min="1"
+              style="width: 50px; text-align: center"
+            />
+            <button id="btnSumar">+</button>
+          </section>
+
+          <button id="agregarAlCarritoBtn">Agregar al carrito</button>
+        </article>
+        </section>
+      </article>
+    </main>
+    <!-- MODAL CARRITO -->
+    <section id="cartModal" class="modal">
+      <div class="modal-content">
+        <span id="closeCartBtn">&times;</span>
+        <h2>🛒 Tu carrito</h2>
+        <ul id="cartItems"></ul>
+        <p>
+          <strong>Total: $<span id="cartTotal">0</span></strong>
+        </p>
+        <button id="sendWhatsApp">Enviar pedido</button>
       </div>
     </section>
-  <section class="buscador">
-  <input type="text" id="buscador" placeholder="Buscar productos...">
-  </section>
-
-</div>
-  <section id="about">
-    <h2>Sobre Nosotros</h2>
-    <p>Bienvenidos a nuestra tienda especializada en productos para mascotas. Ofrecemos alimentos, juguetes, accesorios y productos de cuidado de la más alta calidad. Nuestro objetivo es brindar una experiencia excelente para ti y tu compañero peludo.</p>
-  </section>
-
-  <section id="filters">
-    <button class="filter-btn active" data-cat="">Todos</button>
-  </section>
-
-  <main>
-    <section id="productos" class="productos-grid"></section>
-  </main>
-
-  <!-- Modal producto / galería -->
-<!-- MODAL GALERÍA -->
-<div id="galeriaModal" class="modal">
-  <div class="modal-content">
-    <span id="closeGaleriaBtn">&times;</span>
-    <h2 id="galeriaTitulo"></h2>
-    <p id="galeriaPrecio"></p>
-    <p id="galeriaDescripcion"></p>
-    <p id="galeriaStock"></p>
-
-    <img id="galeriaPrincipal" />
-
-    <div id="galeriaImagenes"></div>
-
-    <div class="cantidad-container">
-      <button id="btnRestar">-</button>
-      <input
-        type="number"
-        id="cantidadProducto"
-        value="1"
-        min="1"
-        style="width: 50px; text-align: center"
-      />
-      <button id="btnSumar">+</button>
-    </div>
-
-    <button id="agregarAlCarritoBtn">Agregar al carrito</button>
-  </div>
-</div>
-
-<!-- MODAL CARRITO -->
-<div id="cartModal" class="modal">
-  <div class="modal-content">
-    <span id="closeCartBtn">&times;</span>
-    <h2>🛒 Tu carrito</h2>
-    <ul id="cartItems"></ul>
-    <p><strong>Total: $<span id="cartTotal">0</span></strong></p>
-    <button id="sendWhatsApp">Enviar pedido</button>
-  </div>
-</div>
-<div id="datosClienteModal" class="modal-client">
-  <div class="modal-content-client">
-    <h2>Datos de Envío</h2>
-    <form id="formDatosCliente">
-      <input type="text" id="clienteNombre" placeholder="Nombre completo" required>
-      <input type="text" id="clienteDireccion" placeholder="Dirección" required>
-      <input type="tel" id="clienteTelefono" placeholder="Teléfono" required>
-      <button type="submit" class="btn-enviar">Confirmar Pedido</button>
-    </form>
-  </div>
-</div>
-<footer id="contacto">
+    <section id="datosClienteModal" class="modal-client">
+      <div class="modal-content-client">
+        <h2>Datos de Envío</h2>
+        <form id="formDatosCliente">
+          <input
+            type="text"
+            id="clienteNombre"
+            placeholder="Nombre completo"
+            required
+          />
+          <input
+            type="text"
+            id="clienteDireccion"
+            placeholder="Dirección"
+            required
+          />
+          <input
+            type="tel"
+            id="clienteTelefono"
+            placeholder="Teléfono"
+            required
+          />
+          <button type="submit" class="btn-enviar">Confirmar Pedido</button>
+        </form>
+      </div>
+    </section>
+    <footer id="contacto">
       <h2>PetShop - Amigo Fiel</h2>
       <p>📍 Dirección: Carrera #30, Bogotá, Colombia</p>
       <p>📞 Tel: 300 432 13 25</p>
-      <p style="margin-top: 1rem">
-        &copy; 2025 PetShop - Tienda para Mascotas
-      </p>
+      <p style="margin-top: 1rem">&copy; 2025 PetShop - Tienda para Mascotas</p>
     </footer>
-<script type="module" src="js/apps.js"></script>
-</body>
+    <script type="module" src="js/apps.js"></script>
+  </body>
 </html>
