@@ -187,3 +187,133 @@ td {
   border-radius: 8px;
   color: var(--text);
 }
+/* =========================
+   📱 MEDIA QUERIES RESPONSIVAS
+   ========================= */
+
+/* Pantallas grandes (hasta 1200px) */
+@media (max-width: 1200px) {
+  .header {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  table {
+    font-size: 0.95rem;
+  }
+}
+
+/* Tablets y pantallas medianas (hasta 992px) */
+@media (max-width: 992px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .logo {
+    width: 50px;
+  }
+
+  .btn {
+    align-self: flex-end;
+    padding: 0.5rem 1rem;
+  }
+
+  main {
+    padding: 1.5rem;
+  }
+
+  table th,
+  table td {
+    padding: 0.6rem 0.8rem;
+  }
+}
+
+/* Celulares grandes (hasta 768px) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.4rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .header {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-radius: var(--border-radius);
+  }
+
+  th,
+  td {
+    font-size: 0.9rem;
+  }
+}
+
+/* Celulares pequeños (hasta 480px) */
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.8rem;
+  }
+
+  .logo {
+    width: 45px;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  .btn {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+
+  th,
+  td {
+    padding: 0.5rem;
+  }
+
+  .mensaje-vacio {
+    font-size: 0.9rem;
+  }
+}
