@@ -523,3 +523,6 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
   localStorage.removeItem("session");
   window.location.href = "login.html";
 });
+document.getElementById("volverBtn").addEventListener("click", () => {
+  window.location.href = "/index.html";
+});

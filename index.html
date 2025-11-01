@@ -14,6 +14,8 @@
     />
     <title>PetShop - Tienda para Mascotas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
@@ -68,36 +70,34 @@
     <!-- Modal producto / galería -->
     <!-- MODAL GALERÍA -->
     <main>
-      <article id="productos" class="productos-grid"></>
-      <section id="galeriaModal" class="modal">
-        <article class="modal-content">
-          <span id="closeGaleriaBtn">&times;</span>
-          <h2 id="galeriaTitulo"></h2>
-          <p id="galeriaPrecio"></p>
-          <p id="galeriaDescripcion"></p>
-          <p id="galeriaStock"></p>
+  <article id="productos" class="productos-grid"></article>
+  <section id="galeriaModal" class="modal">
+    <article class="modal-content">
+      <span id="closeGaleriaBtn">&times;</span>
+      <h2 id="galeriaTitulo"></h2>
+      <p id="galeriaPrecio"></p>
+      <p id="galeriaDescripcion"></p>
+      <p id="galeriaStock"></p>
 
-          <img id="galeriaPrincipal" />
+      <img id="galeriaPrincipal" />
 
-          <section id="galeriaImagenes"></section>
+      <section id="galeriaImagenes"></section>
 
-          <section class="cantidad-container">
-            <button id="btnRestar">-</button>
-            <input
-              type="number"
-              id="cantidadProducto"
-              value="1"
-              min="1"
-              style="width: 50px; text-align: center"
-            />
-            <button id="btnSumar">+</button>
-          </section>
+      <section class="cantidad-container">
+        <button id="btnRestar">-</button>
+        <input
+          type="number"
+          id="cantidadProducto"
+          value="1"
+          min="1"
+          style="width: 50px; text-align: center"
+        />
+        <button id="btnSumar">+</button>
+      </section>
 
-          <button id="agregarAlCarritoBtn">Agregar al carrito</button>
-        </article>
-        </section>
-      </article>
-    </main>
+      <button id="agregarAlCarritoBtn">Agregar al carrito</button>
+    </article>
+  </section>
     <!-- MODAL CARRITO -->
     <section id="cartModal" class="modal">
       <div class="modal-content">
@@ -136,9 +136,42 @@
         </form>
       </div>
     </section>
+    <!-- Sección de formulario de contacto -->
+    <section id="contact-form">
+      <h2>Formulario de Contacto</h2>
+      <div class="form-container">
+        <form id="contactForm" class="contact-form">
+          <div class="form-field">
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" name="nombre" required />
+          </div>
+
+          <div class="form-field">
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required />
+          </div>
+         <div class="form-field">
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" required />
+      </div>
+          <div class="form-field">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-field">
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+          </div>
+
+          <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+        </form>
+      </div>
+    </section>
+
    <footer id="contacto">
-        <div class="footer-container">
-            <div class="footer-content">
+        <section class="footer-container">
+            <section class="footer-content">
                 <div class="footer-info">
                     <h2>PetShop - Amigo Fiel</h2>
                     <p><i class="fas fa-map-marker-alt"></i> Dirección: Carrera #30, Bogotá, Colombia</p>
@@ -160,12 +193,12 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </section>
             
             <div class="copyright">
                 <p>Todos los derechos reservados - 2025</p>
             </div>
-        </div>
+        </section>
     </footer>
     <script type="module" src="js/apps.js"></script>
   </body>

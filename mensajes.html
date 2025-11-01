@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel-Mensajes</title>
+    <link
+      rel="shortcut icon"
+      href="https://res.cloudinary.com/dl7kjajkv/image/upload/v1758065913/PERRO.png_wog4m4.jpg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/css/pedidos.css" />
+  </head>
+  <body>
+    <header class="header">
+      <img
+        src="https://res.cloudinary.com/dl7kjajkv/image/upload/v1758065913/PERRO.png_wog4m4.jpg"
+        alt="Logo"
+        class="logo"
+      />
+      <h1>Gestión de Mensajes</h1>
+      <button id="volverBtn">⬅ Volver al Panel</button>
+    </header>
+
+    <main>
+      <h2>Mensajes Recibidos</h2>
+      <table id="tablaMensajes">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Email</th>
+            <th>Mensaje</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody id="mensajesBody"></tbody>
+      </table>
+
+      <p class="mensaje-vacio" id="sinMensajes" style="display: none">
+        No hay mensajes registrados aún.
+      </p>
+    </main>
+
+    <!-- Modal Detalle de Pedido -->
+    <div id="modalDetalle" class="modal" style="display: none">
+      <div class="modal-content">
+        <span class="cerrarModal">&times;</span>
+        <h2>Detalle del Pedido</h2>
+        <div id="detallePedido"></div>
+      </div>
+    </div>
+
+    <script type="module" src="/js/mensajes.js"></script>
+  </body>
+</html>

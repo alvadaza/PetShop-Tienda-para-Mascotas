@@ -674,6 +674,124 @@ nav .top-bar .login-btn:hover {
 .btn-eliminar:hover {
   transform: scale(1.1);
 }
+/* ===== Sección del formulario de contacto ===== */
+#contact-form {
+  padding: 70px 20px;
+  background: var(--secondary);
+  text-align: center;
+  animation: fadeIn 1s ease forwards;
+}
+
+#contact-form h2 {
+  font-size: 2.2rem;
+  color: var(--primary-dark);
+  margin-bottom: 35px;
+  position: relative;
+}
+
+#contact-form h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--primary);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* ===== Contenedor del formulario ===== */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 40px 30px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  animation: slideUp 1s ease forwards;
+}
+
+/* ===== Campos del formulario ===== */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-field label {
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+}
+
+.form-field input,
+.form-field textarea {
+  padding: 12px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #fafafa;
+  color: var(--text);
+}
+
+/* Efectos al enfocar los campos */
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #fff;
+  box-shadow: 0 0 8px rgba(151, 116, 79, 0.3);
+  transform: scale(1.01);
+}
+
+/* ===== Botón de envío ===== */
+.btn-enviar {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 14px 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(151, 116, 79, 0.3);
+}
+
+.btn-enviar:hover {
+  background: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(122, 93, 63, 0.4);
+}
+
+/* ===== Animaciones ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 footer {
   background: linear-gradient(
@@ -817,6 +935,9 @@ footer {
   font-size: 0.9rem;
   color: #aaa;
 }
+
+/* ===== Responsividad ===== */
+
 @media (max-width: 1200px) {
   header {
     flex-direction: column;
@@ -919,6 +1040,18 @@ footer {
 
   .social-icons {
     justify-content: center;
+  }
+  #contact-form h2 {
+    font-size: 1.7rem;
+  }
+
+  .form-container {
+    padding: 25px 20px;
+  }
+
+  .btn-enviar {
+    font-size: 1rem;
+    padding: 12px;
   }
 }
 

@@ -596,3 +596,28 @@ async function generarPDF(nombre, direccion, telefono) {
   )}_${fecha.replace(/\//g, "-")}.pdf`;
   doc.save(nombreArchivo);
 }
+// Manejar el formulario de contacto
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+    const direccion = document.getElementById("direccion").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const mensaje = document.getElementById("mensaje").value.trim();
+
+    const { error } = await supabase
+      .from("contactos")
+      .insert([{ nombre, telefono, direccion, email, mensaje }]);
+
+    if (error) {
+      alert("❌ Error al enviar mensaje: " + error.message);
+    } else {
+      alert("✅ Mensaje enviado correctamente. ¡Gracias por contactarnos!");
+      form.reset();
+    }
+  });
+});

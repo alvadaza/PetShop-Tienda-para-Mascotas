@@ -8,7 +8,9 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 /* -------------------------
    Lógica de carga / mostrar
    ------------------------- */
-
+document.getElementById("volverBtn").addEventListener("click", () => {
+  window.location.href = "/admin.html";
+});
 document.getElementById("logoutBtn").addEventListener("click", () => {
   if (confirm("¿Seguro que quieres cerrar sesión?")) {
     window.location.href = "admin.html";
