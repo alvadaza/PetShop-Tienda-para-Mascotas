@@ -28,10 +28,31 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("filtrarStock")
     .addEventListener("change", mostrarProductosEnTabla);
 });
+
+// Logout
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+  await supabase.auth.signOut();
+  document.getElementById("loginForm").style.display = "block";
+  document.getElementById("adminPanel").style.display = "none";
+});
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+  await supabase.auth.signOut();
+  localStorage.removeItem("session");
+  window.location.href = "login.html";
+});
+document.getElementById("volverBtn").addEventListener("click", () => {
+  window.location.href = "/index.html";
+});
 document.addEventListener("DOMContentLoaded", () => {
   const btnPedidos = document.getElementById("verPedidosBtn");
   btnPedidos.addEventListener("click", () => {
     window.location.href = "/pedidos.html"; // O "/pedidos.html" si está en raíz
+  });
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const btnMensajes = document.getElementById("verMensajesBtn");
+  btnMensajes.addEventListener("click", () => {
+    window.location.href = "/mensajes.html"; // O "/pedidos.html" si está en raíz
   });
 });
 // Estado
@@ -512,17 +533,3 @@ const producto = {
   imagenes: imagenesString,
   // ...
 };
-// Logout
-document.getElementById("logoutBtn").addEventListener("click", async () => {
-  await supabase.auth.signOut();
-  document.getElementById("loginForm").style.display = "block";
-  document.getElementById("adminPanel").style.display = "none";
-});
-document.getElementById("logoutBtn").addEventListener("click", async () => {
-  await supabase.auth.signOut();
-  localStorage.removeItem("session");
-  window.location.href = "login.html";
-});
-document.getElementById("volverBtn").addEventListener("click", () => {
-  window.location.href = "/index.html";
-});
